@@ -1,0 +1,66 @@
+file=open('nums.txt','r')
+contents=file.read()
+numbers=contents.split(',')
+int_nums=[]
+print("The file contents are : ",end="")
+for i in numbers:
+    print(i,end=" ")
+    int_nums.append(int(i))
+print("The prime numbers are : ",end="")
+flag=0
+for num in int_nums:
+     if (num > 1):
+        for j in range(2,num):
+            if (num%j == 0):
+                flag=1
+        if(flag==0):
+            print(num,end=" ")
+        flag=0
+        
+        
+        
+  file=open('word.txt','r')
+contents=file.read()
+words=contents.split()
+sentences=contents.split(".")
+lower=upper=digits=special=0
+for ch in contents:
+    if(ch.islower()):
+        lower+=1
+    elif(ch.isupper()):
+        upper+=1
+    elif(ch!=" "):
+        special+=1
+print("Contents of the file : ",contents.strip())
+print("Number of sentences:",len(sentences)-1)
+print("Number of words:",len(words))
+print("Number of lowercase charactes:",lower)
+print("Number of uppercase characters:",upper)
+print("Number of special characters:",special-1)
+
+
+import matplotlib.pyplot as plt
+import pandas as pd
+csv=pd.read_csv('ADL_202_ex.csv')
+marks=csv['Mark']
+mean_mark=marks.mean()
+max_mark=marks.max()
+min_mark=marks.min()
+
+maleData=csv.loc[csv['Gender'] == 'm']
+maleMean = maleData['Mark'].mean()
+maleLowestMark = maleData['Mark'].min() 
+maleHighestMark = maleData['Mark'].max() 
+
+femaleData=csv.loc[csv['Gender'] == 'f']
+femaleMean = femaleData['Mark'].mean()
+femaleLowestMark = femaleData['Mark'].min() 
+femaleHighestMark = femaleData['Mark'].max() 
+
+
+X=csv['Sl No']
+Y=csv['Marks']
+plt.plot(X,Y)
+print("Total Mean mark = ",mean_mark)
+print("Maximum mark = ",max_mark)
+print("Minumum mark = ",min_mark)
